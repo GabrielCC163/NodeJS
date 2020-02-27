@@ -13,7 +13,7 @@ app.use(cors());
 
 //iniciando o DB
 mongoose.connect(
-	"mongodb://localhost:27017/nodeapi",
+	process.env.MONGODB_URL || "mongodb://localhost:27017/nodeapi",
 	{ 
 		useNewUrlParser: true,
 		useUnifiedTopology: true
@@ -31,4 +31,4 @@ requireDir("./src/models");
 //rotas
 app.use('/api', require('./src/routes'));
 
-app.listen(3001);
+app.listen(process.env.PORT || 3001);
